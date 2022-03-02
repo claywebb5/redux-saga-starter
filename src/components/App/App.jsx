@@ -10,6 +10,8 @@ function App() {
   const getElements = () => {
     axios.get('/api/element').then(response => {
       dispatch({ type: 'SET_ELEMENTS', payload: response.data });
+      // Dispatch to RUN_FIRST_SAGA
+      dispatch({ type: 'RUN_FIRST_SAGA'});
     })
       .catch(error => {
         console.log('error with element get request', error);
@@ -20,6 +22,7 @@ function App() {
     getElements();
   }, []);
 
+  
   const addElement = () => {
     axios.post('/api/element', { 
       name: newElement
